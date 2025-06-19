@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Waffle Whizz - Order Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🧇 Waffle Whizz</h1>
+    <p>Follow us on <a href="https://instagram.com/wafflewhizz.chm" target="_blank">@wafflewhizz.chm</a></p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('puff-waffles')">Puff Waffles</button>
+    <button class="tab-btn" onclick="showTab('stick-waffles')">Stick Waffles</button>
+    <button class="tab-btn" onclick="showTab('special-items')">Special Items</button>
+  </div>
+
+  <main>
+    <div id="puff-waffles" class="tab-content active">
+      <div class="item-grid"></div>
+    </div>
+    <div id="stick-waffles" class="tab-content">
+      <div class="item-grid"></div>
+    </div>
+    <div id="special-items" class="tab-content">
+      <div class="item-grid"></div>
+    </div>
+
+    <section class="cart-section">
+      <h2>🛒 Your Cart</h2>
+      <ul id="cart-list"></ul>
+      <p id="total">Total: ₹0</p>
+      <img id="qr-code" src="qr.png" alt="QR Code to Pay" />
+      <a id="pay-btn" href="#" target="_blank">Pay Now via PhonePe</a>
+    </section>
+  </main>
+
+  <div id="popup" class="popup">
+    <span id="popup-message"></span>
+  </div>
+
+  <footer>
+    <p>© 2025 Waffle Whizz | <a href="https://instagram.com/wafflewhizz.chm" target="_blank">Instagram</a> | <a href="mailto:contact@wafflewhizz.com">Contact Us</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
