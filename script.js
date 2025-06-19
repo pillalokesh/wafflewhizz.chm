@@ -105,34 +105,37 @@ function renderCart() {
   });
 
   document.getElementById('total').textContent = `Total: ₹${total}`;
-  const upiID = "Q7576846709@ybl"; // Verify this is a valid merchant UPI ID
   const payBtn = document.getElementById('pay-btn');
-  const fallbackUrl = encodeURIComponent('https://wafflewhizz.com'); // Replace with your actual website if available
-  const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent('WaffleWhizz')}&am=${total}&cu=INR&url=${fallbackUrl}`;
+  const qrCode = document.getElementById('qr-code');
 
-  payBtn.href = upiLink;
-  payBtn.onclick = (e) => {
-    e.preventDefault();
+  payBtn.onclick = () => {
     if (total <= 0) {
       showPopup('Your cart is empty. Add items to proceed.', true);
       return;
     }
     payBtn.classList.add('loading');
-    showPopup('Initiating Payment...');
+    qrCode.classList.add('highlight');
+    showPopup('Opening QR Scanner...');
     try {
+      // Attempt to open QR scanner or payment app
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isIOS) {
+        // iOS doesn't support QR scan intents; guide user to use payment app
+        throw new Error('iOS QR scan not supported');
+      } else {
+        // Android: Try generic QR scan intent
+        window.location.href = 'intent://scan/#Intent;scheme=qrscan;package=com.google.zxing.client.android;end';
+      }
       setTimeout(() => {
-        window.location.href = upiLink;
-        setTimeout(() => {
-          if (document.hasFocus()) {
-            payBtn.classList.remove('loading');
-            showPopup('No UPI app detected. Install PhonePe, Google Pay, or another UPI app.', true);
-          }
-        }, 2000);
-      }, 500);
+        if (document.hasFocus()) {
+          throw new Error('QR scanner not opened');
+        }
+      }, 2000);
     } catch (error) {
       payBtn.classList.remove('loading');
-      showPopup('Failed to initiate payment. Please try again or use the QR code.', true);
-      console.error('Payment initiation error:', error);
+      qrCode.classList.remove('highlight');
+      showPopup('Please open your payment app (e.g., PhonePe, Google Pay) and scan the QR code above.', true);
+      console.error('QR scan error:', error);
     }
   };
 }

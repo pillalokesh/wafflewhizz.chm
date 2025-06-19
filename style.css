@@ -213,20 +213,45 @@ main {
   transform: scale(1.1);
 }
 
+#qr-code.highlight {
+  animation: pulseGlow 1s ease-in-out 2;
+}
+
 #pay-btn {
   display: inline-block;
   background: #28a745;
   color: white;
   padding: 12px 25px;
-  text-decoration: none;
+  border: none;
   border-radius: 8px;
   font-weight: 500;
+  cursor: pointer;
   transition: background 0.3s, transform 0.3s;
+  position: relative;
 }
 
 #pay-btn:hover {
   background: #218838;
   transform: scale(1.1);
+}
+
+#pay-btn.loading {
+  pointer-events: none;
+  background: #218838;
+}
+
+#pay-btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .popup {
@@ -249,7 +274,7 @@ main {
 .popup.error {
   background: #dc3545;
   color: white;
-  animation: shake 0.5s ease-out;
+  animation: shake 0.4s ease-out;
 }
 
 .popup.show {
@@ -325,8 +350,19 @@ footer a:hover {
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translateX(5px); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 rgba(255, 111, 0, 0.3); transform: scale(1); }
+  50% { box-shadow: 0 0 20px rgba(255, 111, 0, 0.7); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 rgba(255, 111, 0, 0.3); transform: scale(1); }
 }
 
 @media (max-width: 600px) {
