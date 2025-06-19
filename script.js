@@ -1,33 +1,33 @@
 const puffWaffles = [
-  { name: "Dark Fantasy", price: 39, image: "waffle1.jpg" },
-  { name: "Milk Fantasy", price: 39, image: "waffle1.jpg" },
-  { name: "White Fantasy", price: 39, image: "waffle1.jpg" },
-  { name: "Dark & Milk", price: 45, image: "waffle1.jpg" },
-  { name: "Dark & White", price: 45, image: "waffle1.jpg" },
-  { name: "Triple Chocolate", price: 55, image: "waffle1.jpg" },
-  { name: "Crunchy Oreo", price: 55, image: "waffle1.jpg" },
-  { name: "Crunchy KitKat", price: 55, image: "waffle1.jpg" },
-  { name: "Gems with Milk", price: 60, image: "waffle1.jpg" },
-  { name: "Gems with Dark", price: 60, image: "waffle1.jpg" }
+  { name: "Dark Fantasy", price: 39, image: "waffle 1.jpg" },
+  { name: "Milk Fantasy", price: 39, image: "waffle 1.jpg" },
+  { name: "White Fantasy", price: 39, image: "waffle 1.jpg" },
+  { name: "Dark & Milk", price: 45, image: "waffle 1.jpg" },
+  { name: "Dark & White", price: 45, image: "waffle 1.jpg" },
+  { name: "Triple Chocolate", price: 55, image: "waffle 1.jpg" },
+  { name: "Crunchy Oreo", price: 55, image: "waffle 1.jpg" },
+  { name: "Crunchy KitKat", price: 55, image: "waffle 1.jpg" },
+  { name: "Gems with Milk", price: 60, image: "waffle 1.jpg" },
+  { name: "Gems with Dark", price: 60, image: "waffle 1.jpg" }
 ];
 
 const stickWaffles = [
-  { name: "Dark Fantasy", price: 69, image: "waffle1.jpg" },
-  { name: "Milk Fantasy", price: 69, image: "waffle1.jpg" },
-  { name: "White Fantasy", price: 69, image: "waffle1.jpg" },
-  { name: "Dark & Milk", price: 75, image: "waffle1.jpg" },
-  { name: "Dark & White", price: 75, image: "waffle1.jpg" },
-  { name: "Triple Chocolate", price: 85, image: "waffle1.jpg" },
-  { name: "Crunchy Oreo", price: 85, image: "waffle1.jpg" },
-  { name: "Crunchy KitKat", price: 85, image: "waffle1.jpg" },
-  { name: "Gems with Milk", price: 90, image: "waffle1.jpg" },
-  { name: "Gems with Dark", price: 90, image: "waffle1.jpg" }
+  { name: "Dark Fantasy", price: 69, image: "waffle 1.jpg" },
+  { name: "Milk Fantasy", price: 69, image: "waffle 1.jpg" },
+  { name: "White Fantasy", price: 69, image: "waffle 1.jpg" },
+  { name: "Dark & Milk", price: 75, image: "waffle 1.jpg" },
+  { name: "Dark & White", price: 75, image: "waffle 1.jpg" },
+  { name: "Triple Chocolate", price: 85, image: "waffle 1.jpg" },
+  { name: "Crunchy Oreo", price: 85, image: "waffle 1.jpg" },
+  { name: "Crunchy KitKat", price: 85, image: "waffle 1.jpg" },
+  { name: "Gems with Milk", price: 90, image: "waffle 1.jpg" },
+  { name: "Gems with Dark", price: 90, image: "waffle 1.jpg" }
 ];
 
 const specialItems = [
-  { name: "Dry Fruits", price: 70, image: "waffle1.jpg" },
-  { name: "Special Naughty Nutella", price: 120, image: "waffle1.jpg" },
-  { name: "Almond Cake", price: 180, image: "waffle1.jpg" }
+  { name: "Dry Fruits", price: 70, image: "waffle 1.jpg" },
+  { name: "Special Naughty Nutella", price: 120, image: "waffle 1.jpg" },
+  { name: "Almond Cake", price: 220, image: "waffle 1.jpg" }
 ];
 
 let cart = [];
@@ -64,7 +64,7 @@ function showTab(tabId) {
 
 function showPopup(message, isError = false) {
   const popup = document.getElementById('popup');
-  const popupMessage = document.getElementById('message-text');
+  const popupMessage = document.getElementById('popup-message');
   popupMessage.textContent = message;
   popup.className = `popup ${isError ? 'error' : 'success'}`;
   popup.classList.add('show');
@@ -105,19 +105,6 @@ function renderCart() {
   });
 
   document.getElementById('total').textContent = `Total: ₹${total}`;
-  const payBtn = document.getElementById('pay-now-btn');
-  const upiID = "Q7576846709@ybl"; // Verify this is a valid merchant UPI ID
-  if (total > 0) {
-    payBtn.href = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent('WaffleWhizz')}&am=${total}&cu=INR`;
-    payBtn.classList.remove('disabled');
-  } else {
-    payBtn.href = '#';
-    payBtn.classList.add('disabled');
-    payBtn.onclick = (e) => {
-      e.preventDefault();
-      showPopup('Your cart is empty. Add items to proceed.', true);
-    };
-  }
 }
 
 renderItems();

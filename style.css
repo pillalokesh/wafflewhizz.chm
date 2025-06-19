@@ -202,28 +202,6 @@ main {
   color: #d35400;
 }
 
-#pay-now-btn {
-  display: inline-block;
-  background: #28a745;
-  color: white;
-  padding: 12px 25px;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: background 0.3s, transform 0.3s;
-}
-
-#pay-now-btn:hover {
-  background: #218838;
-  transform: scale(1.1);
-}
-
-#pay-now-btn.disabled {
-  background: #ccc;
-  pointer-events: none;
-  transform: none;
-}
-
 .popup {
   position: fixed;
   top: 20px;
