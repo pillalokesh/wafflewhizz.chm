@@ -27,7 +27,7 @@ const stickWaffles = [
 const specialItems = [
   { name: "Dry Fruits", price: 70, image: "waffle 1.jpg" },
   { name: "Special Naughty Nutella", price: 120, image: "waffle 1.jpg" },
-  { name: "Almond Cake", price: 220, image: "waffle 1.jpg" }
+  { name: "Almond Cake", price: 180, image: "waffle 1.jpg" }
 ];
 
 let cart = [];
@@ -62,14 +62,15 @@ function showTab(tabId) {
   document.querySelector(`button[onclick="showTab('${tabId}')"]`).classList.add('active');
 }
 
-function showPopup(message) {
+function showPopup(message, isError = false) {
   const popup = document.getElementById('popup');
   const popupMessage = document.getElementById('popup-message');
   popupMessage.textContent = message;
+  popup.className = `popup ${isError ? 'error' : 'success'}`;
   popup.classList.add('show');
   setTimeout(() => {
     popup.classList.remove('show');
-  }, 2000);
+  }, 4000);
 }
 
 function addToCart(name, price, btn) {
@@ -81,8 +82,9 @@ function addToCart(name, price, btn) {
 }
 
 function removeFromCart(index) {
+  const itemName = cart[index]?.name || 'Item';
   cart.splice(index, 1);
-  showPopup(`${cart[index]?.name || 'Item'} removed from cart!`);
+  showPopup(`${itemName} removed from cart!`);
   renderCart();
 }
 
@@ -103,8 +105,36 @@ function renderCart() {
   });
 
   document.getElementById('total').textContent = `Total: ₹${total}`;
-  const upiID = "Q7576846709@ybl";
-  document.getElementById('pay-btn').href = `upi://pay?pa=${upiID}&pn=WaffleWhizz&am=${total}&cu=INR`;
+  const upiID = "Q7576846709@ybl"; // Verify this is a valid merchant UPI ID
+  const payBtn = document.getElementById('pay-btn');
+  const fallbackUrl = encodeURIComponent('https://wafflewhizz.com'); // Replace with your actual website if available
+  const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent('WaffleWhizz')}&am=${total}&cu=INR&url=${fallbackUrl}`;
+
+  payBtn.href = upiLink;
+  payBtn.onclick = (e) => {
+    e.preventDefault();
+    if (total <= 0) {
+      showPopup('Your cart is empty. Add items to proceed.', true);
+      return;
+    }
+    payBtn.classList.add('loading');
+    showPopup('Initiating Payment...');
+    try {
+      setTimeout(() => {
+        window.location.href = upiLink;
+        setTimeout(() => {
+          if (document.hasFocus()) {
+            payBtn.classList.remove('loading');
+            showPopup('No UPI app detected. Install PhonePe, Google Pay, or another UPI app.', true);
+          }
+        }, 2000);
+      }, 500);
+    } catch (error) {
+      payBtn.classList.remove('loading');
+      showPopup('Failed to initiate payment. Please try again or use the QR code.', true);
+      console.error('Payment initiation error:', error);
+    }
+  };
 }
 
 renderItems();

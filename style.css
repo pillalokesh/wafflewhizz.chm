@@ -233,14 +233,23 @@ main {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: #28a745;
-  color: white;
   padding: 15px 25px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   display: none;
   z-index: 100;
   animation: popIn 0.5s ease-out;
+}
+
+.popup.success {
+  background: #28a745;
+  color: white;
+}
+
+.popup.error {
+  background: #dc3545;
+  color: white;
+  animation: shake 0.5s ease-out;
 }
 
 .popup.show {
@@ -312,6 +321,12 @@ footer a:hover {
   0% { transform: translateY(-20px) scale(0.8); opacity: 0; }
   50% { transform: translateY(0) scale(1.1); opacity: 0.9; }
   100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 @media (max-width: 600px) {
