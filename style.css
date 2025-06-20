@@ -6,46 +6,46 @@
 }
 
 body {
-  background: #fff7ef;
-  color: #333;
+  background: #fcf7f1;
+  color: #2c2c2c;
   overflow-x: hidden;
 }
 
 header {
-  background: linear-gradient(135deg, #ff6f00, #ff9800);
+  background: linear-gradient(120deg, #ff7300, #ffa000);
   color: white;
-  padding: 30px 20px;
+  padding: 35px 20px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 10;
-  animation: slideInDown 1s ease-out;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  animation: slideInDown 0.8s ease-out;
 }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
-  animation: bounceIn 1.2s ease-out;
+  animation: bounceIn 1s ease-out;
+  letter-spacing: 1px;
 }
 
 header a {
-  color: #fff;
+  color: #fff8dc;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s, transform 0.3s;
 }
 
 header a:hover {
-  color: #ffe082;
-  transform: scale(1.1);
+  color: #fff;
+  transform: scale(1.05);
 }
 
 .tabs {
   display: flex;
   justify-content: center;
   background: #fff;
-  padding: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 9;
@@ -54,35 +54,35 @@ header a:hover {
 .tab-btn {
   background: none;
   border: none;
-  padding: 15px 30px;
-  font-size: 1.1rem;
+  padding: 12px 25px;
+  font-size: 1.05rem;
   font-weight: 600;
-  color: #555;
-  cursor: pointer;
-  transition: color 0.3s, background 0.3s, transform 0.3s;
+  color: #444;
+  border-radius: 25px;
+  transition: 0.3s;
 }
 
 .tab-btn.active {
   color: #ff6f00;
-  background: #fff7ef;
-  border-bottom: 3px solid #ff6f00;
-  transform: translateY(-3px);
+  background: #fff3e6;
+  border: 2px solid #ff6f00;
 }
 
 .tab-btn:hover {
+  background: #ffefdc;
   color: #ff6f00;
   transform: scale(1.05);
 }
 
 main {
-  padding: 20px;
+  padding: 25px 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .tab-content {
   display: none;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .tab-content.active {
@@ -92,25 +92,25 @@ main {
 .item-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
+  gap: 30px;
   margin-top: 20px;
 }
 
 .item-card {
   background: #fff;
   border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  animation: zoomIn 0.6s ease-out forwards;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: zoomIn 0.5s ease-out forwards;
   opacity: 0;
-  animation-delay: calc(0.1s * var(--index));
+  animation-delay: calc(0.07s * var(--index));
 }
 
 .item-card:hover {
-  transform: translateY(-10px) rotate(2deg);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .item-card img {
@@ -119,11 +119,11 @@ main {
   object-fit: cover;
   border-radius: 15px;
   margin-bottom: 15px;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s;
 }
 
 .item-card img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .item-card h3 {
@@ -134,7 +134,7 @@ main {
 
 .item-card p {
   font-size: 1rem;
-  color: #555;
+  color: #666;
 }
 
 .item-card button {
@@ -144,26 +144,26 @@ main {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
-  transition: transform 0.3s, background 0.3s;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .item-card button:hover {
   background: #e65a00;
-  transform: scale(1.1) rotate(3deg);
+  transform: scale(1.08);
 }
 
 .added-animation {
-  animation: pulse 0.5s ease-out;
+  animation: pulse 0.4s ease-out;
 }
 
 .cart-section {
-  background: #fff0e6;
-  padding: 20px;
+  background: #fff8f2;
+  padding: 25px;
   margin-top: 40px;
   border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  animation: slideInUp 1s ease-out;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+  animation: slideInUp 0.8s ease-out;
 }
 
 #cart-list {
@@ -176,8 +176,8 @@ main {
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid #eee;
-  animation: slideInRight 0.5s ease-out;
+  border-bottom: 1px dashed #ccc;
+  font-size: 1rem;
 }
 
 #cart-list button {
@@ -187,7 +187,7 @@ main {
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
+  transition: 0.3s;
 }
 
 #cart-list button:hover {
@@ -198,20 +198,22 @@ main {
 #total {
   font-size: 1.2rem;
   font-weight: 600;
-  margin: 15px 0;
-  color: #d35400;
+  margin-top: 15px;
+  color: #c0392b;
 }
 
 .popup {
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 15px 25px;
+  padding: 14px 22px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   display: none;
-  z-index: 100;
-  animation: popIn 0.5s ease-out;
+  z-index: 1000;
+  font-weight: 500;
+  font-size: 0.95rem;
+  animation: popIn 0.4s ease-out;
 }
 
 .popup.success {
@@ -222,7 +224,7 @@ main {
 .popup.error {
   background: #dc3545;
   color: white;
-  animation: shake 0.4s ease-out;
+  animation: shake 0.3s ease-out;
 }
 
 .popup.show {
@@ -230,27 +232,28 @@ main {
 }
 
 footer {
-  background: linear-gradient(135deg, #ff6f00, #ff9800);
+  background: #262626;
   color: white;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
-  margin-top: 40px;
   font-size: 0.9rem;
+  margin-top: 60px;
   animation: slideInUp 1s ease-out;
 }
 
 footer a {
-  color: #ffe082;
+  color: #ffbd59;
   text-decoration: none;
   margin: 0 10px;
-  transition: color 0.3s, transform 0.3s;
+  transition: 0.3s;
 }
 
 footer a:hover {
-  color: #fff;
-  transform: scale(1.1);
+  color: white;
+  transform: scale(1.05);
 }
 
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -266,42 +269,36 @@ footer a:hover {
   to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes slideInRight {
-  from { transform: translateX(50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
 @keyframes pulse {
   0% { transform: scale(1); background-color: #ff6f00; }
-  50% { transform: scale(1.15); background-color: #ffa34d; }
+  50% { transform: scale(1.12); background-color: #ffa34d; }
   100% { transform: scale(1); background-color: #ff6f00; }
 }
 
 @keyframes bounceIn {
   0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1.2); opacity: 0.7; }
-  70% { transform: scale(0.9); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  70% { transform: scale(0.95); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes zoomIn {
-  0% { transform: scale(0.5) rotate(-5deg); opacity: 0; }
-  60% { transform: scale(1.1) rotate(3deg); opacity: 0.8; }
-  100% { transform: scale(1) rotate(0); opacity: 1; }
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes popIn {
-  0% { transform: translateY(-20px) scale(0.8); opacity: 0; }
-  50% { transform: translateY(0) scale(1.1); opacity: 0.9; }
+  0% { transform: translateY(-20px) scale(0.9); opacity: 0; }
   100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-4px); }
-  40%, 80% { transform: translateX(4px); }
+  20%, 60% { transform: translateX(-3px); }
+  40%, 80% { transform: translateX(3px); }
 }
 
+/* Responsive */
 @media (max-width: 600px) {
   .item-grid {
     grid-template-columns: 1fr;
@@ -319,7 +316,7 @@ footer a:hover {
   .popup {
     top: 10px;
     right: 10px;
-    padding: 10px 20px;
+    padding: 10px 18px;
     font-size: 0.9rem;
   }
 }
