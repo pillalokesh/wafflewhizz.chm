@@ -3,7 +3,7 @@ const puffWaffles = [
   { name: "Milk Fantasy", price: 39, image: "waffle2.avif" },
   { name: "White Fantasy", price: 39, image: "waffle4.webp" },
   { name: "Dark & Milk", price: 45, image: "waffle3.avif" },
-  { name: "Dark & White", price: 45, image: "waffle5.webp" },
+  { name: "Dark & White", price: 45, image: "dark and white.jpg" },
   { name: "Triple Chocolate", price: 55, image: "waffle 1.jpg" },
   { name: "Crunchy Oreo", price: 55, image: "waffle4.webp" },
   { name: "Crunchy KitKat", price: 55, image: "waffle3.avif" },
@@ -25,7 +25,7 @@ const stickWaffles = [
 ];
 
 const specialItems = [
-  { name: "Dry Fruits", price: 70, image: "waffle 1.jpg" },
+  { name: "Dry Fruits", price: 70, image: "waffleice.jpg" },
   { name: "Special Naughty Nutella", price: 120, image: "waffle stick.jpg" },
   { name: "Almond Cake", price: 220, image: "waffle5.webp" }
 ];
