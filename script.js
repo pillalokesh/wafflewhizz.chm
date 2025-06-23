@@ -31,68 +31,113 @@ const specialItems = [
 ];
 
 let cart = [];
+let favorites = [];
+let modalItem = null;
 
 function createCard(item, category, index) {
   const div = document.createElement('div');
   div.className = 'item-card';
   div.style.setProperty('--index', index);
+  div.onclick = () => openModal(item);
+  const isLiked = favorites.some(f => f.name === item.name);
+
   div.innerHTML = `
+    <button class="like-btn ${isLiked ? 'liked' : ''}" 
+      onclick="event.stopPropagation(); toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+      ❤️
+    </button>
     <img src="${item.image}" alt="${item.name}">
     <h3>${item.name}</h3>
     <p>₹${item.price}</p>
-    <button onclick="addToCart('${item.name}', ${item.price}, this)">Add to Cart</button>
   `;
+
   document.querySelector(`#${category} .item-grid`).appendChild(div);
 }
 
 function renderItems() {
+  document.querySelectorAll('.item-grid').forEach(grid => grid.innerHTML = '');
   puffWaffles.forEach((item, index) => createCard(item, 'puff-waffles', index));
   stickWaffles.forEach((item, index) => createCard(item, 'stick-waffles', index));
   specialItems.forEach((item, index) => createCard(item, 'special-items', index));
+  renderFavorites();
+}
+
+function renderFavorites() {
+  const favGrid = document.getElementById('favorite-grid');
+  favGrid.innerHTML = '';
+  favorites.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.className = 'item-card';
+    div.onclick = () => openModal(item);
+    div.innerHTML = `
+      <button class="like-btn liked" 
+        onclick="event.stopPropagation(); toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+        ❤️
+      </button>
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <p>₹${item.price}</p>
+    `;
+    favGrid.appendChild(div);
+  });
+}
+
+function toggleFavorite(item) {
+  const index = favorites.findIndex(f => f.name === item.name);
+  if (index >= 0) {
+    favorites.splice(index, 1);
+    showPopup(`${item.name} removed from favorites`);
+  } else {
+    favorites.push(item);
+    showPopup(`${item.name} added to favorites`);
+  }
+  renderItems();
 }
 
 function showTab(tabId) {
-  document.querySelectorAll('.tab-content').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
   document.querySelector(`button[onclick="showTab('${tabId}')"]`).classList.add('active');
 }
 
-function showPopup(message, isError = false) {
+function showPopup(message) {
   const popup = document.getElementById('popup');
   const popupMessage = document.getElementById('popup-message');
   popupMessage.textContent = message;
-  popup.className = `popup ${isError ? 'error' : 'success'}`;
   popup.classList.add('show');
-  setTimeout(() => {
-    popup.classList.remove('show');
-  }, 4000);
+  setTimeout(() => popup.classList.remove('show'), 3000);
 }
 
-function addToCart(name, price, btn) {
-  cart.push({ name, price });
-  btn.classList.add('added-animation');
-  setTimeout(() => btn.classList.remove('added-animation'), 500);
-  showPopup(`${name} added to cart!`);
-  renderCart();
+function openModal(item) {
+  modalItem = item;
+  document.getElementById('modal-img').src = item.image;
+  document.getElementById('modal-title').textContent = item.name;
+  document.getElementById('modal-price').textContent = `Price: ₹${item.price}`;
+  document.getElementById('modal-qty').value = 1;
+  document.getElementById('modal').style.display = 'flex';
 }
 
-function removeFromCart(index) {
-  const itemName = cart[index]?.name || 'Item';
-  cart.splice(index, 1);
-  showPopup(`${itemName} removed from cart!`);
-  renderCart();
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function addModalToCart() {
+  const qty = parseInt(document.getElementById('modal-qty').value);
+  if (modalItem && qty > 0) {
+    for (let i = 0; i < qty; i++) {
+      cart.push({ name: modalItem.name, price: modalItem.price });
+    }
+    showPopup(`${modalItem.name} x${qty} added to cart`);
+    renderCart();
+    closeModal();
+  }
 }
 
 function renderCart() {
   const list = document.getElementById('cart-list');
   list.innerHTML = '';
   let total = 0;
-
   cart.forEach((item, i) => {
     const li = document.createElement('li');
     li.textContent = `${item.name} - ₹${item.price}`;
@@ -103,8 +148,33 @@ function renderCart() {
     list.appendChild(li);
     total += item.price;
   });
-
   document.getElementById('total').textContent = `Total: ₹${total}`;
+  document.getElementById('cart-count').textContent = cart.length;
 }
+
+function removeFromCart(index) {
+  const item = cart[index];
+  cart.splice(index, 1);
+  showPopup(`${item.name} removed from cart`);
+  renderCart();
+}
+
+function clearCart() {
+  cart = [];
+  renderCart();
+  showPopup("Cart cleared!");
+}
+
+function scrollToCart() {
+  document.querySelector(".cart-section").scrollIntoView({ behavior: "smooth" });
+}
+
+document.getElementById('search').addEventListener('input', function () {
+  const term = this.value.toLowerCase();
+  document.querySelectorAll('.item-card').forEach(card => {
+    const name = card.querySelector('h3').textContent.toLowerCase();
+    card.style.display = name.includes(term) ? '' : 'none';
+  });
+});
 
 renderItems();

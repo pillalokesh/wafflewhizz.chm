@@ -4,46 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Waffle Whizz - Order Now</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>🧇 Waffle Whizz</h1>
-    <p>Follow us on <a href="https://instagram.com/wafflewhizz.chm" target="_blank">@wafflewhizz.chm</a></p>
+  <header class="hero">
+    <div class="container">
+      <h1>🧇 Waffle Whizz</h1>
+      <p>Follow us on <a href="https://instagram.com/wafflewhizz.chm" target="_blank">@wafflewhizz.chm</a></p>
+    </div>
   </header>
 
-  <div class="tabs">
+  <nav class="tabs">
+    <input type="text" id="search" placeholder="Search waffles...">
     <button class="tab-btn active" onclick="showTab('puff-waffles')">Puff Waffles</button>
     <button class="tab-btn" onclick="showTab('stick-waffles')">Stick Waffles</button>
     <button class="tab-btn" onclick="showTab('special-items')">Special Items</button>
-  </div>
+    <button class="tab-btn" onclick="showTab('favorites')">❤️ Favorites</button>
+  </nav>
 
-  <main>
-    <div id="puff-waffles" class="tab-content active">
-      <div class="item-grid"></div>
-    </div>
-    <div id="stick-waffles" class="tab-content">
-      <div class="item-grid"></div>
-    </div>
-    <div id="special-items" class="tab-content">
-      <div class="item-grid"></div>
-    </div>
+  <main class="container">
+    <section id="puff-waffles" class="tab-content active"><div class="item-grid"></div></section>
+    <section id="stick-waffles" class="tab-content"><div class="item-grid"></div></section>
+    <section id="special-items" class="tab-content"><div class="item-grid"></div></section>
+    <section id="favorites" class="tab-content"><div class="item-grid" id="favorite-grid"></div></section>
 
-    <section class="cart-section">
+    <aside class="cart-section">
       <h2>🛒 Your Cart</h2>
       <ul id="cart-list"></ul>
-      <p id="total">Total: ₹0</p>
-    </section>
+      <div class="cart-actions">
+        <button onclick="clearCart()">Clear Cart</button>
+        <div id="total">Total: ₹0</div>
+      </div>
+    </aside>
   </main>
 
-  <div id="popup" class="popup">
-    <span id="popup-message"></span>
-  </div>
+  <div id="popup" class="popup"><span id="popup-message"></span></div>
 
   <footer>
-    <p>© 2025 Waffle Whizz | <a href="https://instagram.com/wafflewhizz.chm" target="_blank">Instagram</a> | <a href="mailto:contact@whizzwaffle.com">Contact Us</a></p>
+    <p>© 2025 Waffle Whizz | 
+      <a href="https://instagram.com/wafflewhizz.chm" target="_blank">Instagram</a> | 
+      <a href="mailto:contact@whizzwaffle.com">Contact Us</a>
+    </p>
   </footer>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="" alt="">
+      <h3 id="modal-title"></h3>
+      <p id="modal-price"></p>
+      <label>Quantity:
+        <input type="number" id="modal-qty" min="1" value="1">
+      </label>
+      <button onclick="addModalToCart()">Add to Cart</button>
+    </div>
+  </div>
+
+  <button class="floating-cart" onclick="scrollToCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
 
   <script src="script.js"></script>
 </body>
