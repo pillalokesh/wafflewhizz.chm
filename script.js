@@ -25,7 +25,7 @@ const stickWaffles = [
 ];
 
 const specialItems = [
-  { name: "Dry Fruits", price: 70, image: "waffleice.jpg" },
+  { name: "Dry Fruits", price: 70, image: "dry fruits-puff.jpg" },
   { name: "Special Naughty Nutella", price: 120, image: "waffle stick.jpg" },
   { name: "Almond Cake", price: 220, image: "waffle5.webp" }
 ];
