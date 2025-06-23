@@ -3,7 +3,7 @@
 const puffWaffles = [
   { name: "Dark Fantasy", price: 39, image: "darkpuff.jpg" },
   { name: "Milk Fantasy", price: 39, image: "waffle2.avif" },
-  { name: "White Fantasy", price: 39, image: "whitepuff.jpg" },
+  { name: "White Fantasy", price: 45, image: "whitepuff.jpg" },
   { name: "Dark & Milk", price: 45, image: "waffle3.avif" },
   { name: "Dark & White", price: 45, image: "dark and white.jpg" },
   { name: "Triple Chocolate", price: 55, image: "waffle 1.jpg" },
