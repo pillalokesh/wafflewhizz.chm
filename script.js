@@ -20,7 +20,7 @@ const stickWaffles = [
   { name: "Triple Chocolate", price: 85, image: "waffle5.webp" },
   { name: "Crunchy Oreo", price: 85, image: "waffle stick.jpg" },
   { name: "Crunchy KitKat", price: 85, image: "waffle 1.jpg" },
-  { name: "Gems with Milk", price: 90, image: "waffle2.avif" },
+  { name: "Gems with Milk", price: 90, image: "waffle1.avif" },
   { name: "Gems with Dark", price: 90, image: "waffle stick.jpg" }
 ];
 
