@@ -1,3 +1,5 @@
+// script.js
+
 const puffWaffles = [
   { name: "Dark Fantasy", price: 39, image: "darkpuff.jpg" },
   { name: "Milk Fantasy", price: 39, image: "waffle2.avif" },
@@ -19,8 +21,8 @@ const stickWaffles = [
   { name: "Dark & White", price: 75, image: "waffle3.avif" },
   { name: "Triple Chocolate", price: 85, image: "waffle5.webp" },
   { name: "Crunchy Oreo", price: 85, image: "waffle stick.jpg" },
-  { name: "Crunchy KitKat", price: 85, image: "waffle 1.jpg" },
-  { name: "Gems with Milk", price: 90, image: "waffle1.avif" },
+  { name: "Crunchy KitKat", price: 90, image: "waffle 1.jpg" },
+  { name: "Gems with Milk", price: 90, image: "darkstick.jpg" },
   { name: "Gems with Dark", price: 90, image: "darkstick.jpg" }
 ];
 
@@ -31,7 +33,6 @@ const specialItems = [
 ];
 
 let cart = [];
-let favorites = [];
 let modalItem = null;
 
 function createCard(item, category, index) {
@@ -39,13 +40,8 @@ function createCard(item, category, index) {
   div.className = 'item-card';
   div.style.setProperty('--index', index);
   div.onclick = () => openModal(item);
-  const isLiked = favorites.some(f => f.name === item.name);
 
   div.innerHTML = `
-    <button class="like-btn ${isLiked ? 'liked' : ''}" 
-      onclick="event.stopPropagation(); toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-      ❤️
-    </button>
     <img src="${item.image}" alt="${item.name}">
     <h3>${item.name}</h3>
     <p>₹${item.price}</p>
@@ -59,39 +55,6 @@ function renderItems() {
   puffWaffles.forEach((item, index) => createCard(item, 'puff-waffles', index));
   stickWaffles.forEach((item, index) => createCard(item, 'stick-waffles', index));
   specialItems.forEach((item, index) => createCard(item, 'special-items', index));
-  renderFavorites();
-}
-
-function renderFavorites() {
-  const favGrid = document.getElementById('favorite-grid');
-  favGrid.innerHTML = '';
-  favorites.forEach((item, index) => {
-    const div = document.createElement('div');
-    div.className = 'item-card';
-    div.onclick = () => openModal(item);
-    div.innerHTML = `
-      <button class="like-btn liked" 
-        onclick="event.stopPropagation(); toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-        ❤️
-      </button>
-      <img src="${item.image}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <p>₹${item.price}</p>
-    `;
-    favGrid.appendChild(div);
-  });
-}
-
-function toggleFavorite(item) {
-  const index = favorites.findIndex(f => f.name === item.name);
-  if (index >= 0) {
-    favorites.splice(index, 1);
-    showPopup(`${item.name} removed from favorites`);
-  } else {
-    favorites.push(item);
-    showPopup(`${item.name} added to favorites`);
-  }
-  renderItems();
 }
 
 function showTab(tabId) {
@@ -168,13 +131,5 @@ function clearCart() {
 function scrollToCart() {
   document.querySelector(".cart-section").scrollIntoView({ behavior: "smooth" });
 }
-
-document.getElementById('search').addEventListener('input', function () {
-  const term = this.value.toLowerCase();
-  document.querySelectorAll('.item-card').forEach(card => {
-    const name = card.querySelector('h3').textContent.toLowerCase();
-    card.style.display = name.includes(term) ? '' : 'none';
-  });
-});
 
 renderItems();

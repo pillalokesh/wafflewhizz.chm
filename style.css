@@ -56,14 +56,6 @@ header p a:hover {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-#search {
-  padding: 10px;
-  border: 2px solid #ff8800;
-  border-radius: 20px;
-  font-size: 1rem;
-  width: 200px;
-}
-
 .tab-btn {
   background: none;
   border: 2px solid transparent;
@@ -133,23 +125,6 @@ header p a:hover {
 .item-card p {
   font-size: 1rem;
   color: #555;
-}
-
-.like-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  cursor: pointer;
-  color: #ccc;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.like-btn.liked {
-  color: red;
-  transform: scale(1.2);
 }
 
 .cart-section {
@@ -327,17 +302,31 @@ footer a:hover {
   background: #e65f00;
 }
 
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .tabs {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tabs::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 10px;
+  }
+
+  .tab-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   .item-grid {
@@ -346,10 +335,5 @@ footer a:hover {
 
   .modal-content {
     width: 90%;
-  }
-
-  #search {
-    width: 100%;
-    max-width: 300px;
   }
 }
