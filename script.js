@@ -14,21 +14,21 @@ const puffWaffles = [
 ];
 
 const stickWaffles = [
-  { name: "Dark Fantasy", price: 69, image: "darkstick.jpg" },
+  { name: "Dark Fantasy", price: 69, image: "dark stick.jpg" },
   { name: "Milk Fantasy", price: 69, image: "waffle 1.jpg" },
   { name: "White Fantasy", price: 69, image: "waffle stick.jpg" },
-  { name: "Dark & Milk", price: 75, image: "waffle 1.jpg" },
+  { name: "Dark & Milk", price: 75, image: "dark and milk stick.jpg" },
   { name: "Dark & White", price: 75, image: "waffle3.avif" },
   { name: "Triple Chocolate", price: 85, image: "waffle5.webp" },
-  { name: "Crunchy Oreo", price: 85, image: "waffle stick.jpg" },
-  { name: "Crunchy KitKat", price: 90, image: "waffle 1.jpg" },
+  { name: "Crunchy Oreo", price: 85, image: "oreao stick.jpg" },
+  { name: "Crunchy KitKat", price: 90, image: "kitakate stick.jpg" },
   { name: "Gems with Milk", price: 90, image: "darkstick.jpg" },
   { name: "Gems with Dark", price: 90, image: "darkstick.jpg" }
 ];
 
 const specialItems = [
   { name: "Dry Fruits", price: 70, image: "dry fruits-puff.jpg" },
-  { name: "Special Naughty Nutella", price: 120, image: "waffle stick.jpg" },
+  { name: "Special Naughty Nutella", price: 120, image: "120 waffle.jpg" },
   { name: "Almond Cake", price: 220, image: "waffle5.webp" }
 ];
 
